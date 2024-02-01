@@ -15,6 +15,9 @@
 
 #include "utils.h"
 
+#include <zlib.h>
+#include <curlpp/cURLpp.hpp>
+
 #ifdef _MSC_VER
 #  include <shlobj_core.h>
 #  include <strptime.h>

@@ -15,6 +15,10 @@
 
 #include "http.h"
 
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
+#include <curlpp/Multi.hpp>
+#include <curlpp/Options.hpp>
 #include <curlpp/Infos.hpp>
 
 minio::error::Error minio::http::Response::ReadStatusCode() {

@@ -15,6 +15,8 @@
 
 #include "args.h"
 
+#include <curlpp/cURLpp.hpp>
+
 minio::error::Error minio::s3::BucketArgs::Validate() {
   return utils::CheckBucketName(bucket);
 }

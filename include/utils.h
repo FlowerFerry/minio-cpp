@@ -26,12 +26,10 @@
 #include <openssl/buffer.h>
 #include <openssl/evp.h>
 #include <sys/types.h>
-#include <zlib.h>
 
 #include <array>
 #include <cmath>
 #include <cstring>
-#include <curlpp/cURLpp.hpp>
 #include <iomanip>
 #include <iostream>
 #include <list>

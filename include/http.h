@@ -23,11 +23,14 @@
 #  include <arpa/inet.h>
 #endif
 
-#include <curlpp/Easy.hpp>
-#include <curlpp/Multi.hpp>
-#include <curlpp/Options.hpp>
-
 #include "utils.h"
+
+#include <functional>
+
+namespace curlpp {
+    class Easy;
+    class Multi;
+}
 
 namespace minio {
 namespace http {

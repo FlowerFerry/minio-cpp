@@ -15,6 +15,8 @@
 
 #include "response.h"
 
+#include <curlpp/cURLpp.hpp>
+
 minio::s3::Response minio::s3::Response::ParseXML(std::string_view data,
                                                   int status_code,
                                                   utils::Multimap headers) {

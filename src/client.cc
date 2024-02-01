@@ -15,6 +15,8 @@
 
 #include "client.h"
 
+#include <curlpp/cURLpp.hpp>
+
 minio::s3::ListObjectsResult::ListObjectsResult(error::Error err) {
   this->failed_ = true;
   this->resp_.contents.push_back(Item(err));
