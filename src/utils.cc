@@ -17,6 +17,8 @@
 
 #include <zlib.h>
 #include <curlpp/cURLpp.hpp>
+#include <openssl/buffer.h>
+#include <openssl/evp.h>
 
 #ifdef _MSC_VER
 #  include <shlobj_core.h>

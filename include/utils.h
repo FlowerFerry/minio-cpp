@@ -23,8 +23,6 @@
 #include <pwd.h>
 #include <unistd.h>
 #endif
-#include <openssl/buffer.h>
-#include <openssl/evp.h>
 #include <sys/types.h>
 
 #include <array>

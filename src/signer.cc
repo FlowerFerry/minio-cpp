@@ -15,6 +15,9 @@
 
 #include "signer.h"
 
+#include <openssl/evp.h>
+#include <openssl/hmac.h>
+
 const char* SIGN_V4_ALGORITHM = "AWS4-HMAC-SHA256";
 
 std::string minio::signer::GetScope(utils::Time& time, std::string& region,
