@@ -4,27 +4,19 @@ MinIO C++ SDK is Simple Storage Service (aka S3) client to perform bucket and ob
 
 For a complete list of APIs and examples, please take a look at the [MinIO C++ Client API Reference](https://minio-cpp.min.io/)
 
+In addition to doc, test, and examples, this library has been ported for Visual Studio and has been successfully compiled on Visual Studio 2022 ver.17.3.5 .
+
 ## Build requirements
 * A working C++ development environment supporting C++17 standards.
 * CMake 3.10 or higher.
-* [vcpkg](https://vcpkg.io/en/index.html).
 
-## Install from `vcpkg`
-```
-vcpkg install minio-cpp
-```
-
-## Building source
-```bash
-$ git clone https://github.com/minio/minio-cpp
-$ cd minio-cpp
-$ wget --quiet -O vcpkg-master.zip https://github.com/microsoft/vcpkg/archive/refs/heads/master.zip
-$ unzip -qq vcpkg-master.zip
-$ ./vcpkg-master/bootstrap-vcpkg.sh
-$ ./vcpkg-master/vcpkg integrate install
-$ cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=./vcpkg-master/scripts/buildsystems/vcpkg.cmake
-$ cmake --build ./build --config Debug
-```
+### Depends
+* [cURL](https://github.com/curl/curl)
+* [curlpp](https://github.com/jpbarrette/curlpp)
+* [zlib](https://github.com/madler/zlib)
+* [pugixml](https://github.com/zeux/pugixml)
+* [nlohmann/json](https://github.com/nlohmann/json)
+* [openssl](https://github.com/openssl/openssl)
 
 ## Example:: file-uploader.cc
 ```c++
