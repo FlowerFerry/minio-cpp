@@ -16,10 +16,17 @@
 #ifndef _MINIO_CREDS_PROVIDERS_H
 #define _MINIO_CREDS_PROVIDERS_H
 
+#ifdef _MSC_VER
+#  include <winsock2.h>
+#  include <ws2tcpip.h>
+
+#  pragma comment(lib, "ws2_32.lib")
+#else
+#  include <arpa/inet.h>
+#  include <netdb.h>
+#  include <sys/socket.h>
+#endif
 #include <INIReader.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <sys/socket.h>
 #include <sys/types.h>
 
 #include <fstream>
@@ -33,6 +40,8 @@
 #define DEFAULT_DURATION_SECONDS (60 * 60 * 24)  // 1 day.
 #define MIN_DURATION_SECONDS (60 * 15)           // 15 minutes.
 #define MAX_DURATION_SECONDS (60 * 60 * 24 * 7)  // 7 days.
+
+#undef close
 
 namespace minio {
 namespace creds {

@@ -58,17 +58,37 @@ ELSE(CURL_FOUND)
   MESSAGE(FATAL_ERROR "Could not find the CURL library and development files.")
 ENDIF(CURL_FOUND)
 
-find_package(unofficial-curlpp CONFIG REQUIRED)
-list(APPEND requiredlibs unofficial::curlpp::curlpp)
+if (MSVC)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/utf-cpp/include)
+  
+  set(STRPTIME
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/strptime/strptime.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/strptime/strptime.c
+  )
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/strptime)
+  add_library(strptime ${STRPTIME})
 
-find_package(unofficial-inih CONFIG REQUIRED)
-list(APPEND requiredlibs unofficial::inih::inireader)
+endif()
 
-find_package(nlohmann_json CONFIG REQUIRED)
-list(APPEND requiredlibs nlohmann_json::nlohmann_json)
+set(INIH
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/ini.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/ini.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp/INIReader.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp/INIReader.h
+)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp)
+add_library(inih ${INIH})
+  
+include (find_unofficial_curlpp.cmake)
+include (find_pugixml.cmake)
+include (find_nlohmann_json.cmake)
 
-find_package(pugixml CONFIG REQUIRED)
-list(APPEND requiredlibs pugixml)
+find_package(ZLIB REQUIRED)
+IF(ZLIB_FOUND)
+  INCLUDE_DIRECTORIES(${ZLIB_INCLUDE_DIRS})
+  list(APPEND requiredlibs ZLIB::ZLIB)
+ENDIF()
 
 find_package(OpenSSL REQUIRED)
 IF(OPENSSL_FOUND)

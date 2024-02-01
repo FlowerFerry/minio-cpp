@@ -16,7 +16,12 @@
 #ifndef _MINIO_HTTP_H
 #define _MINIO_HTTP_H
 
-#include <arpa/inet.h>
+#ifdef _MSC_VER
+#  include <winsock2.h>
+#  include <ws2tcpip.h>
+#else
+#  include <arpa/inet.h>
+#endif
 
 #include <curlpp/Easy.hpp>
 #include <curlpp/Multi.hpp>

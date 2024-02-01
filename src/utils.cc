@@ -15,6 +15,14 @@
 
 #include "utils.h"
 
+#ifdef _MSC_VER
+#  include <shlobj_core.h>
+#  include <strptime.h>
+#  include <ww898/cp_utfw.hpp>
+#  include <ww898/cp_utf8.hpp>
+#  include <ww898/utf_converters.hpp>
+#endif
+
 const std::string WEEK_DAYS[] = {"Sun", "Mon", "Tue", "Wed",
                                  "Thu", "Fri", "Sat"};
 const std::string MONTHS[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -39,7 +47,18 @@ bool minio::utils::GetEnv(std::string& var, const char* name) {
 std::string minio::utils::GetHomeDir() {
   std::string home;
   if (GetEnv(home, "HOME")) return home;
+#ifdef _MSC_VER
+  PWSTR path = NULL;
+  HRESULT hr = SHGetKnownFolderPath(FOLDERID_AppDataProgramData, 0, NULL, &path);
+  if (SUCCEEDED(hr)) {
+      ww898::utf::conv<ww898::utf::utfw, ww898::utf::utf8>(
+          path, path + wcslen(path), std::back_inserter(home));
+  }
+  CoTaskMemFree(path);
+  return home;
+#else
   return getpwuid(getuid())->pw_dir;
+#endif
 }
 
 std::string minio::utils::Printable(std::string s) {
@@ -258,7 +277,12 @@ std::string minio::utils::FormatTime(const std::tm* time, const char* format) {
 
 std::tm* minio::utils::Time::ToUTC() {
   std::tm* t = new std::tm;
+#ifdef _MSC_VER
+  time_t v = tv_.tv_sec;
+  *t = utc_ ? *std::localtime(&v) : *std::gmtime(&v);
+#else
   *t = utc_ ? *std::localtime(&tv_.tv_sec) : *std::gmtime(&tv_.tv_sec);
+#endif
   return t;
 }
 
