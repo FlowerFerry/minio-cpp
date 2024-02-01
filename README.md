@@ -10,7 +10,7 @@ In addition to doc, test, and examples, this library has been ported for Visual 
 * A working C++ development environment supporting C++17 standards.
 * CMake 3.10 or higher.
 
-### Depends
+### Dependencies 
 * [cURL](https://github.com/curl/curl)
 * [curlpp](https://github.com/jpbarrette/curlpp)
 * [zlib](https://github.com/madler/zlib)
