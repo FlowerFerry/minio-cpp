@@ -16,9 +16,9 @@
 #ifndef _MINIO_S3_RESPONSE_H
 #define _MINIO_S3_RESPONSE_H
 
-#include <pugixml.hpp>
-
 #include "types.h"
+
+#include <pugixml.hpp>
 
 namespace minio {
 namespace s3 {

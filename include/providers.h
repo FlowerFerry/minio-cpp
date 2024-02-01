@@ -29,13 +29,13 @@
 #include <INIReader.h>
 #include <sys/types.h>
 
-#include <fstream>
-#include <nlohmann/json.hpp>
-#include <string>
-
 #include "credentials.h"
 #include "signer.h"
 #include "utils.h"
+
+#include <fstream>
+#include <nlohmann/json.hpp>
+#include <string>
 
 #define DEFAULT_DURATION_SECONDS (60 * 60 * 24)  // 1 day.
 #define MIN_DURATION_SECONDS (60 * 15)           // 15 minutes.

@@ -16,10 +16,10 @@
 #ifndef _MINIO_S3_TYPES_H
 #define _MINIO_S3_TYPES_H
 
+#include "utils.h"
+
 #include <iostream>
 #include <nlohmann/json.hpp>
-
-#include "utils.h"
 
 namespace minio {
 namespace s3 {

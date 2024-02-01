@@ -16,7 +16,6 @@
 #ifndef _MINIO_SIGNER_H
 #define _MINIO_SIGNER_H
 
-
 #include "http.h"
 
 namespace minio {

@@ -16,9 +16,9 @@
 #ifndef _MINIO_CREDS_CREDENTIALS_H
 #define _MINIO_CREDS_CREDENTIALS_H
 
-#include <pugixml.hpp>
-
 #include "utils.h"
+
+#include <pugixml.hpp>
 
 namespace minio {
 namespace creds {

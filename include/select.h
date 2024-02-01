@@ -16,10 +16,10 @@
 #ifndef _MINIO_S3_SELECT_H
 #define _MINIO_S3_SELECT_H
 
-#include <pugixml.hpp>
-
 #include "http.h"
 #include "types.h"
+
+#include <pugixml.hpp>
 
 namespace minio {
 namespace s3 {
