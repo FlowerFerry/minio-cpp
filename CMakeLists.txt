@@ -80,8 +80,10 @@ set(INIH
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp)
 add_library(inih STATIC ${INIH})
-set_property(TARGET inih PROPERTY
-   MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+if (MSVC)
+  set_property(TARGET inih PROPERTY
+    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
   
 include (find_unofficial_curlpp.cmake)
 include (find_pugixml.cmake)
@@ -112,8 +114,10 @@ SET(MINIOCPP_PATCH_VERSION "0")
 
 add_subdirectory(include)
 add_subdirectory(src)
-set_property(TARGET miniocpp PROPERTY
-   MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+if (MSVC)
+  set_property(TARGET miniocpp PROPERTY
+    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
 
 option(BUILD_EXAMPLES "Build examples" ON)
 if (BUILD_EXAMPLES)
