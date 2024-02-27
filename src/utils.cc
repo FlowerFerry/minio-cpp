@@ -21,12 +21,12 @@
 #include <openssl/evp.h>
 
 #ifdef _MSC_VER
-#  include <shlobj_core.h>
 #ifdef __cplusplus
 extern "C" {
 #  include <strptime.h>
 }
 #endif
+#  include <shlobj_core.h>
 #  include <ww898/cp_utfw.hpp>
 #  include <ww898/cp_utf8.hpp>
 #  include <ww898/utf_converters.hpp>
