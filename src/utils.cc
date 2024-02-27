@@ -22,7 +22,11 @@
 
 #ifdef _MSC_VER
 #  include <shlobj_core.h>
+#ifdef __cplusplus
+extern "C" {
 #  include <strptime.h>
+}
+#endif
 #  include <ww898/cp_utfw.hpp>
 #  include <ww898/cp_utf8.hpp>
 #  include <ww898/utf_converters.hpp>

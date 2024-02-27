@@ -66,8 +66,9 @@ if (MSVC)
   ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/strptime/strptime.c
   )
   include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/strptime)
-  add_library(strptime ${STRPTIME})
-
+  add_library(strptime STATIC ${STRPTIME})
+  set_property(TARGET strptime PROPERTY
+     MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
 set(INIH
@@ -78,7 +79,11 @@ set(INIH
 )
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp)
-add_library(inih ${INIH})
+add_library(inih STATIC ${INIH})
+if (MSVC)
+  set_property(TARGET inih PROPERTY
+    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
   
 include (find_unofficial_curlpp.cmake)
 include (find_pugixml.cmake)
@@ -109,6 +114,10 @@ SET(MINIOCPP_PATCH_VERSION "0")
 
 add_subdirectory(include)
 add_subdirectory(src)
+if (MSVC)
+  set_property(TARGET miniocpp PROPERTY
+    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
 
 option(BUILD_EXAMPLES "Build examples" ON)
 if (BUILD_EXAMPLES)
@@ -147,4 +156,12 @@ endif(BUILD_DOC)
 
 configure_file(miniocpp.pc.in miniocpp.pc @ONLY)
 install(FILES ${CMAKE_BINARY_DIR}/miniocpp.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-
+if (MSVC)
+  install(TARGETS strptime DESTINATION lib)
+  install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/strptime/strptime.h DESTINATION include/strptime)
+endif()
+install(TARGETS inih DESTINATION lib)
+install(FILES 
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/ini.h 
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp/INIReader.h
+DESTINATION include/inih-r58)
