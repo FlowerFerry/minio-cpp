@@ -163,5 +163,7 @@ endif()
 install(TARGETS inih DESTINATION lib)
 install(FILES 
   ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/ini.h 
-  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp/INIReader.h
 DESTINATION include/inih-r58)
+install(FILES 
+  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/inih-r58/cpp/INIReader.h
+DESTINATION include/inih-r58/cpp)
